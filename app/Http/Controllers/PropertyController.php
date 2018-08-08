@@ -7,6 +7,8 @@ use App\Http\Requests;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use App\Property;
 use App\Transformer\PropertyTransformer;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\Filter;
 
 class PropertyController extends Controller
 {
@@ -16,7 +18,20 @@ class PropertyController extends Controller
 	{
 		$this->response = $response;
 	}
+	public function search()
+	{
+		//Get the task
+		$properties = QueryBuilder::for(Property::class)
+			->allowedFilters([Filter::scope('between'),'name', 'price', 'bedrooms', 'bathrooms', 'storeys', 'garages'])
+			->paginate(15);
 	
+		if (!$properties) {
+			return $this->response->errorNotFound('Property Not Found');
+		}
+		
+		// Return a properties
+		return $this->response->withPaginator($properties, new  PropertyTransformer());
+	}
 	public function index()
 	{
 		//Get all property
