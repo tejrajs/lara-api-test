@@ -18,6 +18,9 @@ use Illuminate\Http\Request;
 // });
 
 Route::group(['prefix' => '/v1', 'middleware' => 'guest'], function () {
+	//search property by parameter
+	Route::get('search', 'PropertyController@search');
+	//get all property
 	Route::get('properties','PropertyController@index');
 	// get specific property
 	Route::get('property/{id}','PropertyController@show');
