@@ -22,8 +22,8 @@ class PropertyController extends Controller
 	{
 		//Get the task
 		$properties = QueryBuilder::for(Property::class)
-			->allowedFilters([Filter::scope('between'),'name', 'price', 'bedrooms', 'bathrooms', 'storeys', 'garages'])
-			->paginate(15);
+			->allowedFilters([Filter::scope('between'),'name', Filter::exact('price'), Filter::exact('bedrooms'), Filter::exact('bathrooms'), Filter::exact('storeys'), Filter::exact('garages')])
+			->paginate(100);
 	
 		if (!$properties) {
 			return $this->response->errorNotFound('Property Not Found');
