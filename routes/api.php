@@ -13,6 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::group(['prefix' => '/v1', 'middleware' => 'guest'], function () {
+	Route::get('properties','PropertyController@index');
+	// get specific property
+	Route::get('property/{id}','PropertyController@show');
+	// delete a property
+	Route::delete('property/{id}','PropertyController@destroy');
+	// update existing property
+	Route::put('property','PropertyController@store');
+	// create new property
+	Route::post('property','PropertyController@store');
 });
