@@ -1,0 +1,23 @@
+
+<table ng-table="tableParams" class="table" show-filter="true">
+                <tr ng-repeat="property in $data">
+                    <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                        {{property.name}}
+                    </td>
+                    <td title="'Price'" filter="{ price: 'number'}" sortable="'price'">
+                        {{property.price}}
+                    </td>
+                    <td title="'Bedrooms'" filter="{ bedrooms: 'number'}" sortable="'bedrooms'">
+                        {{property.bedrooms}}
+                    </td>
+                    <td title="'Bathrooms'" filter="{ bathrooms: 'number'}" sortable="'bathrooms'">
+                        {{property.bathrooms}}
+                    </td>
+                    <td title="'Storeys'" filter="{ storeys: 'number'}" sortable="'storeys'">
+                        {{property.storeys}}
+                    </td>
+                    <td title="'Garages'" filter="{ garages: 'number'}" sortable="'garages'">
+                        {{property.garages}}
+                    </td>
+                </tr>
+            </table>
